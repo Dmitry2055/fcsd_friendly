@@ -18,8 +18,8 @@ public class Main{
         logger = Logger.getLogger("com.company");
 //        pool = ForkJoinPool.commonPool();
 
-        int start = 30;
-        int end = 300;
+        int start = 2;
+        int end = 10000;
 
         if (start == 0 && end == 0) {
             logger.log(Level.WARNING, "start == end == 0");

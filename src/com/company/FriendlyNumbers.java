@@ -43,7 +43,7 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 //            log.log(Level.INFO, String.format("compute(): newStart = %d", newStart));
 
             newEnd = newStart;
-            FriendlyNumbers right = new FriendlyNumbers(newStart, end, depth);
+            FriendlyNumbers right = new FriendlyNumbers(newStart+1, end, depth);
             right.fork();
             FriendlyNumbers left = new FriendlyNumbers(start, newEnd, 1);
             FriendlyData leftRes = left.compute();
@@ -62,8 +62,8 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
         FriendlyData data = ForkJoinPool.commonPool().invoke(new FriendlyNumbers(start, end, depth));
 
         long endTime = System.nanoTime();
-        long elapsed = endTime - startTime;
-        System.out.println("Time taken: " + elapsed);
+        long elapsed = endTime - startTime; //  nanoseconds
+        System.out.format("Time taken: %.3f s%n", elapsed/1000000000.0);
 
 
         int last = end - start + 1;
@@ -74,9 +74,11 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 
         for (int i = 0; i < last; i++) {
             for (int j = i + 1; j < last; j++) {
-                if ((data.getNum()[i] == data.getNum()[j]) && (data.getNum()[i] == data.getNum()[j]))
+                //if ((data.getNum()[i] == data.getNum()[j]) && (data.getNum()[i] == data.getNum()[j])) {
+                if (data.getRatio()[i] == data.getRatio()[j]){
                     System.out.printf("%d and %d are FRIENDLY\n", data.getThe_num()[i], data.getThe_num()[j]);
                     friendlyCount++;
+                }
             }
         }
         System.out.println("Friendly count = " + friendlyCount);
@@ -109,11 +111,12 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 
             while (factor < done) {
                 if ((i % factor) == 0) {                //	if i can be divided by factor
-                    sum += (factor + (i / factor));     //	add the divisor (factor) to the sum
+//                    sum += (factor + (i / factor));     //	add the divisor (factor) to the sum
+                    sum += factor;     //	add the divisor (factor) to the sum
 
-                    if ((done = i / factor) == factor){ //	if i == factor^2 (why?)
-                        sum -= factor;
-                    }
+//                    if ((done = i / factor) == factor){ //	if i == factor^2 (why?)
+//                        sum -= factor;
+//                    }
                 }
                 factor++;   //	try the next number as a divider
             }
@@ -122,9 +125,10 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 
             data.getNum()[ii] = sum;  // save the sum of factors
             data.getDen()[ii] = i;    // save the i (the number)
-            n = gcdThing(data.getNum()[ii], data.getDen()[ii]); //	n = the Greatest Common Divisor
-            data.getNum()[ii] /= n;
-            data.getDen()[ii] /= n;
+            data.getRatio()[ii] = ((double) sum)/i;    //  save the ratio
+//            n = gcdThing(data.getNum()[ii], data.getDen()[ii]); //	n = the Greatest Common Divisor
+//            data.getNum()[ii] /= n;
+//            data.getDen()[ii] /= n;
         } // end for
 
 
