@@ -25,7 +25,9 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 
     @Override
     protected FriendlyData compute() {
-        log.log(Level.INFO, String.format("compute(): start = %d end = %d depth = %d", start, end, depth));
+
+//        log.log(Level.INFO, String.format("compute(): start = %d end = %d depth = %d", start, end, depth));
+
 //        try {
 //            Thread.sleep(5000);
 //        } catch (InterruptedException e) {
@@ -33,19 +35,19 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 //        }
 
         int newEnd = end;
-        if (depth<=1) {
+        if (depth <= 1) {
             return friendly_numbers(start, end);
-        }
-        else {
+        } else {
             int newStart = start + ((end-start)/depth);
             depth--;
-            log.log(Level.INFO, String.format("compute(): newStart = %d", newStart));
+//            log.log(Level.INFO, String.format("compute(): newStart = %d", newStart));
+
             newEnd = newStart;
             FriendlyNumbers right = new FriendlyNumbers(newStart, end, depth);
             right.fork();
-            FriendlyNumbers left = new FriendlyNumbers(start, newEnd, depth);
-            FriendlyData rightRes = right.join();
+            FriendlyNumbers left = new FriendlyNumbers(start, newEnd, 1);
             FriendlyData leftRes = left.compute();
+            FriendlyData rightRes = right.join();
 
             FriendlyData joinedRes = FriendlyData.mergeData(leftRes, rightRes);
             return  joinedRes;
@@ -73,7 +75,7 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
         for (int i = 0; i < last; i++) {
             for (int j = i + 1; j < last; j++) {
                 if ((data.getNum()[i] == data.getNum()[j]) && (data.getNum()[i] == data.getNum()[j]))
-//                    System.out.printf("%d and %d are FRIENDLY\n", data.getThe_num()[i], data.getThe_num()[j]);
+                    System.out.printf("%d and %d are FRIENDLY\n", data.getThe_num()[i], data.getThe_num()[j]);
                     friendlyCount++;
             }
         }
@@ -84,6 +86,7 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
     public FriendlyData friendly_numbers(int start, int end) {
 
 //        logger.log(Level.INFO, String.format("start = %d   end = %d \n",start, end));
+        log.log(Level.INFO, String.format("friendly_numbers(): start = %d end = %d depth = %d", start, end, depth));
 
         int last = end - start + 1;
 

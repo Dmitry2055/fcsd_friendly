@@ -19,17 +19,16 @@ public class Main{
 //        pool = ForkJoinPool.commonPool();
 
         int start = 30;
-        int end = 100000;
+        int end = 300;
 
         if (start == 0 && end == 0) {
-
-            logger.log(Level.INFO, "start == end == 0");
+            logger.log(Level.WARNING, "start == end == 0");
             return;
         }
 
         System.out.format("Number %d to %d\n", start, end);
-        FriendlyNumbers numbers = new FriendlyNumbers(start, end, 4);
-//        numbers.compute();
+
+
 //        long startTime = System.nanoTime();
         FriendlyNumbers.getFriendlyNumbers(start, end, 1);
 //        long endTime = System.nanoTime();
