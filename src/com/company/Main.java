@@ -22,7 +22,7 @@ public class Main{
         int end = 100000;
 
         if (start == 0 && end == 0) {
-            //comment
+
             logger.log(Level.INFO, "start == end == 0");
             return;
         }
@@ -30,11 +30,11 @@ public class Main{
         System.out.format("Number %d to %d\n", start, end);
         FriendlyNumbers numbers = new FriendlyNumbers(start, end, 4);
 //        numbers.compute();
-        long startTime = System.nanoTime();
+//        long startTime = System.nanoTime();
         FriendlyNumbers.getFriendlyNumbers(start, end, 1);
-        long endTime = System.nanoTime();
-        long elapsed = endTime - startTime;
-        System.out.println("Time taken: " + elapsed);
+//        long endTime = System.nanoTime();
+//        long elapsed = endTime - startTime;
+//        System.out.println("Time taken: " + elapsed);
 
     }
 }

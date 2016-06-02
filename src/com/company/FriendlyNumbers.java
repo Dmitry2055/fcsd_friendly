@@ -56,10 +56,15 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
     }
 
     public static void getFriendlyNumbers(int start, int end, int depth){
+        long startTime = System.nanoTime();
         FriendlyData data = ForkJoinPool.commonPool().invoke(new FriendlyNumbers(start, end, depth));
 
-        int last = end - start + 1;
+        long endTime = System.nanoTime();
+        long elapsed = endTime - startTime;
+        System.out.println("Time taken: " + elapsed);
 
+
+        int last = end - start + 1;
         System.out.println("Starting search for the friendly numbers...");
 
 
