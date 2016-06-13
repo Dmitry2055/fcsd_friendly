@@ -1,5 +1,7 @@
 package com.company;
 
+import jdk.nashorn.internal.runtime.logging.DebugLogger;
+
 import java.math.BigInteger;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
@@ -14,8 +16,13 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
     private final int start;
     private final int end;
     private int depth;
+    private static DebugLogger log;// = Logger.getLogger("FriendlyNumbers");
 
-    private Logger log = Logger.getLogger("FriendlyNumbers");
+    static {
+        log = new DebugLogger("Numbers search logger", Level.INFO, false);
+    }
+
+
 
     public FriendlyNumbers(int start, int end, int depth){
         this.start = start;
@@ -23,29 +30,21 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
         this.depth = depth;
     }
 
+
     @Override
     protected FriendlyData compute() {
-
-//        log.log(Level.INFO, String.format("compute(): start = %d end = %d depth = %d", start, end, depth));
-
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
 
         int newEnd = end;
         if (depth <= 1) {
             return friendly_numbers(start, end);
         } else {
-            int newStart = start + ((end-start)/depth);
+//            int pivot = start + ((end-start)/depth);
+            int pivot = ((int) (start + (end - start)/2));
             depth--;
-//            log.log(Level.INFO, String.format("compute(): newStart = %d", newStart));
 
-            newEnd = newStart;
-            FriendlyNumbers right = new FriendlyNumbers(newStart+1, end, depth);
+            FriendlyNumbers right = new FriendlyNumbers(pivot+1, end, depth);
             right.fork();
-            FriendlyNumbers left = new FriendlyNumbers(start, newEnd, 1);
+            FriendlyNumbers left = new FriendlyNumbers(start, pivot, 1);
             FriendlyData leftRes = left.compute();
             FriendlyData rightRes = right.join();
 
@@ -53,52 +52,54 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
             return  joinedRes;
         }
 
-
-//        return FriendlyData;
     }
 
-    public static void getFriendlyNumbers(int start, int end, int depth){
-        long startTime = System.nanoTime();
-        FriendlyData data = ForkJoinPool.commonPool().invoke(new FriendlyNumbers(start, end, depth));
 
-        long endTime = System.nanoTime();
-        long elapsed = endTime - startTime; //  nanoseconds
-        System.out.format("Time taken: %.3f s%n", elapsed/1000000000.0);
+    //  starts the fork/join
+    public static void getFriendlyNumbers(int start, int end, int depth){
+
+
+        log.log(Level.INFO, String.format("start = %d end = %d depth = %d", start, end, depth));
+
+        Stopwatch friendlyComputing = new Stopwatch("Friendly computing");
+        friendlyComputing.start();
+        FriendlyData data = ForkJoinPool.commonPool().invoke(new FriendlyNumbers(start, end, depth));
+        friendlyComputing.stop();
+
+        System.out.println(friendlyComputing.getInfoMsg());
+        log.log(Level.INFO, friendlyComputing.getInfoMsg());
 
 
         int last = end - start + 1;
-        System.out.println("Starting search for the friendly numbers...");
 
 
-        int friendlyCount = 0;
 
-        for (int i = 0; i < last; i++) {
-            for (int j = i + 1; j < last; j++) {
-                //if ((data.getNum()[i] == data.getNum()[j]) && (data.getNum()[i] == data.getNum()[j])) {
-                if (data.getRatio()[i] == data.getRatio()[j]){
-                    System.out.printf("%d and %d are FRIENDLY\n", data.getThe_num()[i], data.getThe_num()[j]);
-                    friendlyCount++;
-                }
-            }
-        }
-        System.out.println("Friendly count = " + friendlyCount);
+        //  implement parallel match
 
+
+        Stopwatch friendlyMatch = new Stopwatch("Friendly match");
+        friendlyMatch.start();
+
+        FriendlyDataMatcher.findFriendlyNumbers(data, depth);
+
+        friendlyMatch.stop();
+
+        System.out.println(friendlyMatch.getInfoMsg());
+        log.log(Level.INFO, friendlyMatch.getInfoMsg());
     }
 
-    public FriendlyData friendly_numbers(int start, int end) {
 
-//        logger.log(Level.INFO, String.format("start = %d   end = %d \n",start, end));
-        log.log(Level.INFO, String.format("friendly_numbers(): start = %d end = %d depth = %d", start, end, depth));
+    //  does the computation
+    private FriendlyData friendly_numbers(int start, int end) {
+
+//        log.log(Level.INFO, String.format("friendly_numbers(): start = %d end = %d depth = %d", start, end, depth));
 
         int last = end - start + 1;
 
         FriendlyData data = new FriendlyData(last);
-//
-//        int[] the_num = new int[last];
-//        int[] num = new int[last];
-//        int[] den = new int[last];
 
         int i, j, factor, ii, sum, done, n;
+        long on = 0;
 
         for (i = start; i <= end; i++) {
             ii = i - start;     //	ii = quantity of numbers between start and i
@@ -119,6 +120,7 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 //                    }
                 }
                 factor++;   //	try the next number as a divider
+                on++;
             }
 
             //  join sums here
@@ -126,18 +128,14 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
             data.getNum()[ii] = sum;  // save the sum of factors
             data.getDen()[ii] = i;    // save the i (the number)
             data.getRatio()[ii] = ((double) sum)/i;    //  save the ratio
-//            n = gcdThing(data.getNum()[ii], data.getDen()[ii]); //	n = the Greatest Common Divisor
-//            data.getNum()[ii] /= n;
-//            data.getDen()[ii] /= n;
         } // end for
 
-
+//        System.out.println(String.format("friendly_numbers(): start = %d end = %d O = %d", start, end, on));
+//        log.log(Level.INFO, String.format("end of friendly_numbers(): start = %d end = %d depth = %d", start, end, depth));
         return data;
 //        logger.log(Level.INFO, "Searching for friendly...");
 
     }
-
-
 
 
     private int gcdThing(int a, int b) {

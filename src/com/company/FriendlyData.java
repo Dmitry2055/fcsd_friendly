@@ -32,6 +32,8 @@ public class FriendlyData {
         return ratio;
     }
 
+    public int length(){return ratio.length;}
+
     public static FriendlyData mergeData(FriendlyData left, FriendlyData right){
         FriendlyData res = new FriendlyData(0);
 
