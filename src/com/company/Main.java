@@ -7,6 +7,7 @@ import jdk.nashorn.internal.runtime.logging.DebugLogger;
 
 import java.math.BigInteger;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,7 +54,48 @@ public class Main{
         Stopwatch total = new Stopwatch("Total");
         total.start();
 
-        FriendlyNumbers.getFriendlyNumbers(start, end, depth);
+        ForkJoinPool pool = new ForkJoinPool();
+        FriendlyNumbers numbers = new FriendlyNumbers(start, end, 4);
+        /*FriendlyData data = */pool.invoke(numbers);
+
+        do
+        {
+            System.out.printf("******************************************\n");
+            System.out.printf("Search: Parallelism: %d%n", pool.getParallelism());
+            System.out.printf("Search: Active Threads: %d%n", pool.getActiveThreadCount());
+            System.out.printf("Search: Task Count: %d%n", pool.getQueuedTaskCount());
+            System.out.printf("Search: Steal Count: %d%n", pool.getStealCount());
+            System.out.printf("******************************************\n");
+            try
+            {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        } while (!numbers.isDone());
+
+//        FriendlyDataMatcher matcher = new FriendlyDataMatcher(data,start,end,depth);
+//        pool.execute(matcher);
+//
+//        do
+//        {
+//            System.out.printf("******************************************\n");
+//            System.out.printf("Match: Parallelism: %d%n", pool.getParallelism());
+//            System.out.printf("Match: Active Threads: %d%n", pool.getActiveThreadCount());
+//            System.out.printf("Match: Task Count: %d%n", pool.getQueuedTaskCount());
+//            System.out.printf("Match: Steal Count: %d%n", pool.getStealCount());
+//            System.out.printf("******************************************\n");
+//            try
+//            {
+//                TimeUnit.SECONDS.sleep(1);
+//            } catch (InterruptedException e)
+//            {
+//                e.printStackTrace();
+//            }
+//        } while (!matcher.isDone());
+
+//        FriendlyNumbers.getFriendlyNumbers(start, end, depth);
 
         total.stop();
 

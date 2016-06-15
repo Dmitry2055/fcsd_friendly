@@ -3,6 +3,8 @@ package com.company;
 import jdk.nashorn.internal.runtime.logging.DebugLogger;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 import java.util.logging.Level;
@@ -34,23 +36,57 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
     @Override
     protected FriendlyData compute() {
 
+        List<FriendlyNumbers> tasks = new ArrayList<>();
+
         int newEnd = end;
-        if (depth <= 1) {
-            return friendly_numbers(start, end);
-        } else {
-//            int pivot = start + ((end-start)/depth);
-            int pivot = ((int) (start + (end - start)/2));
-            depth--;
+        FriendlyData joinedRes = new FriendlyData(0);
+        int pivot;
+        pivot = start + ((end-start)/depth);
+        int newPivot = pivot;
+        int start = this.start;
 
-            FriendlyNumbers right = new FriendlyNumbers(pivot+1, end, depth);
-            right.fork();
-            FriendlyNumbers left = new FriendlyNumbers(start, pivot, 1);
-            FriendlyData leftRes = left.compute();
-            FriendlyData rightRes = right.join();
-
-            FriendlyData joinedRes = FriendlyData.mergeData(leftRes, rightRes);
-            return  joinedRes;
+        for (int i = depth; i > 0; i--){
+            if (i == 1) {
+                joinedRes = friendly_numbers(start, end);
+            }
+            else {
+                FriendlyNumbers right = new FriendlyNumbers(start, newPivot, 1);
+                right.fork();
+                tasks.add(right);
+                start = newPivot;
+                newPivot += pivot;
+            }
         }
+
+        for (FriendlyNumbers t:
+                tasks) {
+            joinedRes = FriendlyData.mergeData(joinedRes, t.join());
+        }
+
+//        for (int i = depth; i >= 0; i--){
+//            if (depth == 1) {
+//               joinedRes = joinResults(tasks);
+////               return friendly_numbers(start, end);
+//           } else {
+//                pivot = start + ((end-start)/depth);
+////               pivot = ((int) (start + (end - start)/2));
+////               depth--;
+//
+//               FriendlyNumbers right = new FriendlyNumbers(pivot+1, end, depth);
+//               right.fork();
+//               tasks.add(right);
+//               FriendlyNumbers left = new FriendlyNumbers(start, pivot, 1);
+//               FriendlyData leftRes = left.compute();
+//                start = pivot;
+//
+////            FriendlyData rightRes = right.join();
+//
+////            FriendlyData joinedRes = FriendlyData.mergeData(leftRes, rightRes);
+//
+//
+//           }
+//       }
+        return  joinedRes;
 
     }
 
