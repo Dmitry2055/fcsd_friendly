@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by dmitr on 5/30/2016.
@@ -17,8 +16,8 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 
     private final int start;
     private final int end;
-    private int depth;
-    private static DebugLogger log;// = Logger.getLogger("FriendlyNumbers");
+    private int cores;
+    private static DebugLogger log;
 
     static {
         log = new DebugLogger("Numbers search logger", Level.INFO, false);
@@ -26,66 +25,40 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 
 
 
-    public FriendlyNumbers(int start, int end, int depth){
+    public FriendlyNumbers(int start, int end, int cores){
         this.start = start;
         this.end = end;
-        this.depth = depth;
+        this.cores = cores;
     }
 
 
     @Override
     protected FriendlyData compute() {
 
-        List<FriendlyNumbers> tasks = new ArrayList<>();
+        if (cores == 1)
+            return friendly_numbers(start, end);
 
-        int newEnd = end;
-        FriendlyData joinedRes = new FriendlyData(0);
-        int pivot;
-        pivot = start + ((end-start)/depth);
-        int newPivot = pivot;
-        int start = this.start;
+        FriendlyData joinedRes = new FriendlyData(0);   //  the result
+        List<FriendlyNumbers> tasks = new ArrayList<>();    //  task pool
+        int tasksNo = cores + ((int) Math.pow(end - start, 0.4));   //  number of tasks
+        tasksNo = tasksNo > 256 ? 256 : tasksNo;  //  adjust the number of tasks
+        int depth = (end-start) / tasksNo;  //  size of one task
 
-        for (int i = depth; i > 0; i--){
-            if (i == 1) {
-                joinedRes = friendly_numbers(start, end);
-            }
-            else {
-                FriendlyNumbers right = new FriendlyNumbers(start, newPivot, 1);
-                right.fork();
-                tasks.add(right);
-                start = newPivot;
-                newPivot += pivot;
-            }
+        log.log(Level.INFO, String.format("Number of tasks: %d", tasksNo));
+
+
+
+        for (int i = 0; i < end-start; i += depth){
+            FriendlyNumbers task = new FriendlyNumbers(i, i+depth, 1);
+            task.fork();
+            tasks.add(task);
         }
 
-        for (FriendlyNumbers t:
+        for (FriendlyNumbers t :
                 tasks) {
             joinedRes = FriendlyData.mergeData(joinedRes, t.join());
         }
 
-//        for (int i = depth; i >= 0; i--){
-//            if (depth == 1) {
-//               joinedRes = joinResults(tasks);
-////               return friendly_numbers(start, end);
-//           } else {
-//                pivot = start + ((end-start)/depth);
-////               pivot = ((int) (start + (end - start)/2));
-////               depth--;
-//
-//               FriendlyNumbers right = new FriendlyNumbers(pivot+1, end, depth);
-//               right.fork();
-//               tasks.add(right);
-//               FriendlyNumbers left = new FriendlyNumbers(start, pivot, 1);
-//               FriendlyData leftRes = left.compute();
-//                start = pivot;
-//
-////            FriendlyData rightRes = right.join();
-//
-////            FriendlyData joinedRes = FriendlyData.mergeData(leftRes, rightRes);
-//
-//
-//           }
-//       }
         return  joinedRes;
 
     }
@@ -95,11 +68,16 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
     public static void getFriendlyNumbers(int start, int end, int depth){
 
 
-        log.log(Level.INFO, String.format("start = %d end = %d depth = %d", start, end, depth));
+        log.log(Level.INFO, String.format("start = %d end = %d cores = %d", start, end, depth));
 
         Stopwatch friendlyComputing = new Stopwatch("Friendly computing");
         friendlyComputing.start();
-        FriendlyData data = ForkJoinPool.commonPool().invoke(new FriendlyNumbers(start, end, depth));
+
+        ForkJoinPool pool = new ForkJoinPool();
+        FriendlyNumbers numbers = new FriendlyNumbers(start, end, depth);
+        FriendlyData data = pool.invoke(numbers);
+
+
         friendlyComputing.stop();
 
         System.out.println(friendlyComputing.getInfoMsg());
@@ -116,7 +94,7 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
         Stopwatch friendlyMatch = new Stopwatch("Friendly match");
         friendlyMatch.start();
 
-        FriendlyDataMatcher.findFriendlyNumbers(data, depth);
+        FriendlyDataMatcher.findFriendlyNumbers(data, 1);
 
         friendlyMatch.stop();
 
@@ -128,7 +106,7 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
     //  does the computation
     private FriendlyData friendly_numbers(int start, int end) {
 
-//        log.log(Level.INFO, String.format("friendly_numbers(): start = %d end = %d depth = %d", start, end, depth));
+//        log.log(Level.INFO, String.format("friendly_numbers(): start = %d end = %d cores = %d", start, end, cores));
 
         int last = end - start + 1;
 
@@ -167,7 +145,7 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
         } // end for
 
 //        System.out.println(String.format("friendly_numbers(): start = %d end = %d O = %d", start, end, on));
-//        log.log(Level.INFO, String.format("end of friendly_numbers(): start = %d end = %d depth = %d", start, end, depth));
+//        log.log(Level.INFO, String.format("end of friendly_numbers(): start = %d end = %d cores = %d", start, end, cores));
         return data;
 //        logger.log(Level.INFO, "Searching for friendly...");
 
