@@ -71,7 +71,8 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
     public static List<KeyValue> getFriendlyNumbers(int start, int end, int cores){
 
 //  compute
-        log.log(Level.INFO, String.format("start = %d end = %d cores = %d", start, end, cores));
+//        log.log(Level.INFO, String.format("start = %d end = %d cores = %d", start, end, cores));
+        System.out.format("start = %d end = %d cores = %d", start, end, cores);
         ForkJoinPool pool = new ForkJoinPool();
         FriendlyNumbers numbers = new FriendlyNumbers(start, end, cores);
 
@@ -82,7 +83,7 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 
         friendlyComputing.stop();
         System.out.println(friendlyComputing.getInfoMsg());
-        log.log(Level.INFO, friendlyComputing.getInfoMsg());
+//        log.log(Level.INFO, friendlyComputing.getInfoMsg());
 
 //  match
         Stopwatch friendlyMatch = new Stopwatch("Friendly match");
@@ -93,7 +94,7 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
 
         friendlyMatch.stop();
         System.out.println(friendlyMatch.getInfoMsg());
-        log.log(Level.INFO, friendlyMatch.getInfoMsg());
+//        log.log(Level.INFO, friendlyMatch.getInfoMsg());
 
         return matchedData;
     }

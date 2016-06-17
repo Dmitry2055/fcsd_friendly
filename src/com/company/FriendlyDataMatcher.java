@@ -49,7 +49,8 @@ public class FriendlyDataMatcher extends RecursiveTask<List<KeyValue>> {
         tasksNo = Math.min(tasksNo, MAX_TASKS); //  adjust the number of tasks
         int depth = (end-start) / tasksNo;  //  size of one task
 
-        log.log(Level.INFO, String.format("Number of tasks: %d", tasksNo));
+//        log.log(Level.INFO, String.format("Number of tasks: %d", tasksNo));
+        System.out.format("Number of tasks: %d", tasksNo);
 
 
         for (int i = start; i < end-start; i += depth){
@@ -72,7 +73,8 @@ public class FriendlyDataMatcher extends RecursiveTask<List<KeyValue>> {
     public static void findFriendlyNumbers(FriendlyData data, int depth) {
 
 //        System.out.println("Starting matching of the friendly numbers...");
-        log.log(Level.INFO, String.format("Matching friendly numbers..."));
+//        log.log(Level.INFO, String.format("Matching friendly numbers..."));
+//        System.out.println("Matching friendly numbers...");
         int length = data.length();
 
         List<KeyValue> res = ForkJoinPool.commonPool().invoke(new FriendlyDataMatcher(data, 0, length, depth));
