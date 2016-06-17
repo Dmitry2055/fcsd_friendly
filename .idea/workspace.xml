@@ -6,12 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d218a541-58b4-4f65-8392-22b1be78f790" name="Default" comment="fixed the friendly number algorithm according to &#10;http://blogformathematics.blogspot.de/2011/04/friendly-numbers.html &#10;https://en.wikipedia.org/wiki/Friendly_number&#10;&#10;TODO: parallelize/change the search">
+    <list default="true" id="d218a541-58b4-4f65-8392-22b1be78f790" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java" afterPath="$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/FriendlyNumbers.java" afterPath="$PROJECT_DIR$/src/com/company/FriendlyNumbers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/KeyValue.java" afterPath="$PROJECT_DIR$/src/com/company/KeyValue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
     </list>
     <ignored path="fcsd_friendly.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -677,7 +673,7 @@
       <workItem from="1465836459641" duration="166000" />
       <workItem from="1465836846770" duration="2190000" />
       <workItem from="1466067055437" duration="1582000" />
-      <workItem from="1466080354013" duration="7033000" />
+      <workItem from="1466080354013" duration="7063000" />
     </task>
     <task id="LOCAL-00001" summary="changed time measurement">
       <created>1464879682354</created>
@@ -700,15 +696,22 @@
       <option name="project" value="LOCAL" />
       <updated>1464888774280</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fixed the friendly number algorithm according to &#10;http://blogformathematics.blogspot.de/2011/04/friendly-numbers.html &#10;https://en.wikipedia.org/wiki/Friendly_number&#10;&#10;TODO: parallelize/change the search">
+      <created>1466163417478</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1466163417478</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61856000" />
+    <option name="totallyTimeSpent" value="61886000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
