@@ -46,7 +46,8 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
         tasksNo = Math.min(tasksNo, MAX_TASKS); //  adjust the number of tasks
         int chunkSize = (end-start) / tasksNo;  //  size of one task
 
-        log.log(Level.INFO, String.format("Number of tasks: %d", tasksNo));
+//        log.log(Level.INFO, String.format("Number of tasks: %d", tasksNo));
+        System.out.format("Number of tasks: %d", tasksNo);
 
 
 //  fork tasks
