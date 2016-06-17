@@ -49,7 +49,7 @@ public class Main{
 
         log = new DebugLogger("Main logger", Level.INFO, false);
 
-        log.log(Level.INFO, String.format("Numbers %d to %d, cores = %d", start, end, cores));
+//        log.log(Level.INFO, String.format("Numbers %d to %d, cores = %d", start, end, cores));
         System.out.format("Numbers %d to %d, cores = %d%n", start, end, cores);
 
         Stopwatch total = new Stopwatch("Total");
@@ -59,7 +59,7 @@ public class Main{
 
         total.stop();
 
-        log.log(Level.INFO, total.getInfoMsg() + "\n");
+//        log.log(Level.INFO, total.getInfoMsg() + "\n");
         System.out.println(total.getInfoMsg());
         System.out.println();
         System.out.println("friendlyNumbers = " + friendlyNumbers);

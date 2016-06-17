@@ -14,7 +14,6 @@ import java.util.logging.Level;
 public class FriendlyDataMatcher extends RecursiveTask<List<KeyValue>> {
 
 
-    private static final int SEQ_THRESHOLD = 10_000;
     private static DebugLogger log;
     private final int MAX_TASKS = 256;
     private final double POW = 0.4;
@@ -39,24 +38,43 @@ public class FriendlyDataMatcher extends RecursiveTask<List<KeyValue>> {
     @Override
     protected List<KeyValue> compute() {
 
-        if (end-start < SEQ_THRESHOLD)
+        if (depth <= 1){
+            // do sequentially
             return match(start, end);
-        else {
-            FriendlyDataMatcher left = new FriendlyDataMatcher(data, start, start +((int) ((end - start) / 2)) - 1, 1);
-            FriendlyDataMatcher right = new FriendlyDataMatcher(data, start + ((int) ((end - start) / 2)), end, 1);
-            right.fork();
-            List<KeyValue> leftRes = left.compute();
-            List<KeyValue> rightRes = right.join();
-            leftRes.addAll(rightRes);
-            return leftRes;
         }
+
+        List<KeyValue> joinedRes = new ArrayList<>();   //  the result
+        List<FriendlyDataMatcher> tasks = new ArrayList<>();    //  task pool
+        int tasksNo = depth + ((int) Math.pow(end - start, POW));   //  number of tasks
+        tasksNo = Math.min(tasksNo, MAX_TASKS); //  adjust the number of tasks
+        int depth = (end-start) / tasksNo;  //  size of one task
+
+//        log.log(Level.INFO, String.format("Number of tasks: %d", tasksNo));
+        System.out.format("Number of tasks: %d", tasksNo);
+
+
+        for (int i = start; i < end-start; i += depth){
+            int newStart = i;
+            int newEnd = i+depth-1;
+            FriendlyDataMatcher task = new FriendlyDataMatcher(data, newStart, newEnd, 1);
+            task.fork();
+            tasks.add(task);
+        }
+
+        for (FriendlyDataMatcher t :
+                tasks) {
+            joinedRes.addAll(t.join());
+        }
+
+        return joinedRes;
     }
 
     @Deprecated
     public static void findFriendlyNumbers(FriendlyData data, int depth) {
 
 //        System.out.println("Starting matching of the friendly numbers...");
-        log.log(Level.INFO, String.format("Matching friendly numbers..."));
+//        log.log(Level.INFO, String.format("Matching friendly numbers..."));
+//        System.out.println("Matching friendly numbers...");
         int length = data.length();
 
         List<KeyValue> res = ForkJoinPool.commonPool().invoke(new FriendlyDataMatcher(data, 0, length, depth));
