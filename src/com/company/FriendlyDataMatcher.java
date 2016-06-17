@@ -1,6 +1,5 @@
 package com.company;
 
-import com.sun.org.apache.xml.internal.security.keys.content.*;
 import jdk.nashorn.internal.runtime.logging.DebugLogger;
 
 import java.util.ArrayList;
@@ -16,6 +15,8 @@ public class FriendlyDataMatcher extends RecursiveTask<List<KeyValue>> {
 
 
     private static DebugLogger log;
+    private final int MAX_TASKS = 256;
+    private final double POW = 0.4;
     private int friendlyCount;
     private int start;
     private int end;
@@ -37,61 +38,63 @@ public class FriendlyDataMatcher extends RecursiveTask<List<KeyValue>> {
     @Override
     protected List<KeyValue> compute() {
 
-        List<KeyValue> res = new ArrayList<>();
         if (depth <= 1){
-            // do sequential
-            res = match(start, end);
-        }else{
-            // do parallel
-            int pivot = ((int) (start + (end - start)/2));
-            depth--;
-            FriendlyDataMatcher left = new FriendlyDataMatcher(data, start, pivot, depth);  //  left part is more expensive
-            left.fork();
-            FriendlyDataMatcher right = new FriendlyDataMatcher(data, pivot + 1, end, 1);
-            res = right.compute();
-            res.addAll(left.join());
+            // do sequentially
+            return match(start, end);
         }
-        return res;
+
+        List<KeyValue> joinedRes = new ArrayList<>();   //  the result
+        List<FriendlyDataMatcher> tasks = new ArrayList<>();    //  task pool
+        int tasksNo = depth + ((int) Math.pow(end - start, POW));   //  number of tasks
+        tasksNo = Math.min(tasksNo, MAX_TASKS); //  adjust the number of tasks
+        int depth = (end-start) / tasksNo;  //  size of one task
+
+        log.log(Level.INFO, String.format("Number of tasks: %d", tasksNo));
+
+
+        for (int i = start; i < end-start; i += depth){
+            int newStart = i;
+            int newEnd = i+depth-1;
+            FriendlyDataMatcher task = new FriendlyDataMatcher(data, newStart, newEnd, 1);
+            task.fork();
+            tasks.add(task);
+        }
+
+        for (FriendlyDataMatcher t :
+                tasks) {
+            joinedRes.addAll(t.join());
+        }
+
+        return joinedRes;
     }
 
+    @Deprecated
     public static void findFriendlyNumbers(FriendlyData data, int depth) {
 
 //        System.out.println("Starting matching of the friendly numbers...");
         log.log(Level.INFO, String.format("Matching friendly numbers..."));
         int length = data.length();
 
-
-//        Stopwatch friendlyMatch = new Stopwatch("Friendly match");
-//        friendlyMatch.start();
-
         List<KeyValue> res = ForkJoinPool.commonPool().invoke(new FriendlyDataMatcher(data, 0, length, depth));
-        System.out.println("%n resul: %n");
-        System.out.println(res);
-
-//        friendlyMatch.stop();
-//        System.out.println(friendlyMatch.getInfoMsg());
-
     }
 
     private List<KeyValue> match(int start, int end) {
 
         int friendlyCount = 0;
-        List<KeyValue> numbers = new ArrayList<>();
+        List<KeyValue> matches = new ArrayList<>();
 
-    //    FriendlyData data = ;
         for (int i = start; i < end; i++) {
             for (int j = i + 1; j < data.length(); j++) {
                 if (data.getRatio()[i] == data.getRatio()[j]){
-                    System.out.printf("%d and %d are FRIENDLY\n", data.getThe_num()[i], data.getThe_num()[j]);    //  slows down drastically
-                    numbers.add(new KeyValue(data.getNum()[i], data.getNum()[j]));
+//                    System.out.printf("%d and %d are FRIENDLY\n", data.getThe_num()[i], data.getThe_num()[j]);    //  slows down drastically
+                    matches.add(new KeyValue(data.getThe_num()[i], data.getThe_num()[j]));
                     friendlyCount++;
                 }
             }
         }
-        System.out.println("Friendly count = " + friendlyCount);
-        return numbers;
+//        System.out.println("Friendly count = " + friendlyCount);
+//        System.out.println(matches);
+        return matches;
     }
-
-
 
 }

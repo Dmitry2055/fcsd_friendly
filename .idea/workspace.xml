@@ -6,13 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d218a541-58b4-4f65-8392-22b1be78f790" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/KeyValue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/fcsd_friendly/com/company/FriendlyNumbers.class" afterPath="$PROJECT_DIR$/out/production/fcsd_friendly/com/company/FriendlyNumbers.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/fcsd_friendly/com/company/Main.class" afterPath="$PROJECT_DIR$/out/production/fcsd_friendly/com/company/Main.class" />
+    <list default="true" id="d218a541-58b4-4f65-8392-22b1be78f790" name="Default" comment="fixed the friendly number algorithm according to &#10;http://blogformathematics.blogspot.de/2011/04/friendly-numbers.html &#10;https://en.wikipedia.org/wiki/Friendly_number&#10;&#10;TODO: parallelize/change the search">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java" afterPath="$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/FriendlyNumbers.java" afterPath="$PROJECT_DIR$/src/com/company/FriendlyNumbers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/KeyValue.java" afterPath="$PROJECT_DIR$/src/com/company/KeyValue.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
     </list>
     <ignored path="fcsd_friendly.iws" />
@@ -39,8 +37,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
+            <state relative-caret-position="860">
+              <caret line="64" column="67" selection-start-line="64" selection-start-column="67" selection-end-line="64" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,35 +49,33 @@
       <file leaf-file-name="FriendlyNumbers.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
+            <state relative-caret-position="520">
+              <caret line="44" column="60" selection-start-line="44" selection-start-column="60" selection-end-line="44" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+                <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
                 <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FriendlyData.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyData.java">
+      <file leaf-file-name="KeyValue.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/KeyValue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="543">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding>
-                <element signature="e#389#390#0" expanded="true" />
-                <element signature="e#419#420#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="34">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FriendlyDataMatcher.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FriendlyDataMatcher.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
-              <caret line="75" column="54" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
+            <state relative-caret-position="384">
+              <caret line="74" column="35" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -103,11 +99,6 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="PUSH_TAGS">
       <GitPushTagMode />
     </option>
@@ -122,8 +113,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/company/FriendlyData.java" />
         <option value="$PROJECT_DIR$/src/com/company/Stopwatch.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/KeyValue.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java" />
         <option value="$PROJECT_DIR$/src/com/company/FriendlyNumbers.java" />
       </list>
@@ -138,7 +129,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1932" />
+    <option name="width" value="1936" />
     <option name="height" value="1066" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -166,8 +157,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -176,9 +165,53 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fcsd_friendly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fcsd_friendly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fcsd_friendly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fcsd_friendly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fcsd_friendly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fcsd_friendly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="company" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -217,7 +250,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="2 1000 0" />
+      <option name="PROGRAM_PARAMETERS" value="2 100000 0" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -642,10 +675,9 @@
       <workItem from="1465726923814" duration="7407000" />
       <workItem from="1465831002921" duration="3231000" />
       <workItem from="1465836459641" duration="166000" />
-      <workItem from="1465836846770" duration="2778000" />
-      <workItem from="1465983420618" duration="8200000" />
-      <workItem from="1465996746659" duration="7478000" />
-      <workItem from="1466065494144" duration="1474000" />
+      <workItem from="1465836846770" duration="2190000" />
+      <workItem from="1466067055437" duration="1582000" />
+      <workItem from="1466080354013" duration="7033000" />
     </task>
     <task id="LOCAL-00001" summary="changed time measurement">
       <created>1464879682354</created>
@@ -668,28 +700,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464888774280</updated>
     </task>
-    <task id="LOCAL-00004" summary="it works.&#10;&#10;TODO: clean up the code">
-      <created>1465843919636</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1465843919636</updated>
-    </task>
-    <task id="LOCAL-00005" summary="experiments with fork algorithm&#10;&#10;TODO: add more tasks">
-      <created>1465995102022</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1465995102022</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70981000" />
+    <option name="totallyTimeSpent" value="61856000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1932" height="1066" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -697,26 +715,26 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7426778" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21966527" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.124739036" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.123958334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26778242" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39958158" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -735,81 +753,55 @@
     <MESSAGE value="changed time measurement" />
     <MESSAGE value="fixed fork count issue&#10;&#10;TODO: fix the friendly number algorithm" />
     <MESSAGE value="fixed the friendly number algorithm according to &#10;http://blogformathematics.blogspot.de/2011/04/friendly-numbers.html &#10;https://en.wikipedia.org/wiki/Friendly_number&#10;&#10;TODO: parallelize/change the search" />
-    <MESSAGE value="it works.&#10;&#10;TODO: clean up the code" />
-    <MESSAGE value="experiments with fork algorithm&#10;&#10;TODO: add more tasks" />
-    <option name="LAST_COMMIT_MESSAGE" value="experiments with fork algorithm&#10;&#10;TODO: add more tasks" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the friendly number algorithm according to &#10;http://blogformathematics.blogspot.de/2011/04/friendly-numbers.html &#10;https://en.wikipedia.org/wiki/Friendly_number&#10;&#10;TODO: parallelize/change the search" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java</url>
-          <line>86</line>
+          <line>42</line>
           <properties />
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java</url>
-          <line>58</line>
+          <line>73</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java</url>
-          <line>77</line>
+          <line>82</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java</url>
-          <line>92</line>
+          <line>97</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java</url>
-          <line>75</line>
+          <line>74</line>
           <properties />
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java</url>
-          <line>80</line>
-          <properties />
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java</url>
-          <line>61</line>
-          <properties />
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java</url>
-          <line>82</line>
-          <properties />
-          <option name="timeStamp" value="32" />
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java</url>
           <line>40</line>
           <properties />
-          <option name="timeStamp" value="33" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java</url>
-          <line>57</line>
+          <line>55</line>
           <properties />
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java</url>
-          <line>110</line>
-          <properties />
-          <option name="timeStamp" value="36" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="37" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -818,32 +810,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
-            <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="75" column="54" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
+        <state relative-caret-position="629">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -852,20 +822,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="1785">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Stopwatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="67" column="40" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="40" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -889,6 +868,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -898,10 +878,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-          <folding>
-            <element signature="e#474#475#0" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -932,6 +909,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -964,6 +942,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -993,10 +972,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-          <folding>
-            <element signature="e#474#475#0" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1007,6 +983,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1039,6 +1016,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1061,6 +1039,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1083,6 +1062,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1105,6 +1085,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1127,6 +1108,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1156,6 +1138,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1185,6 +1168,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1214,6 +1198,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1243,6 +1228,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1265,6 +1251,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
@@ -1287,8 +1274,17 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1296,38 +1292,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-          <folding>
-            <element signature="e#474#475#0" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/KeyValue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
-          <folding>
-            <element signature="e#279#280#0" expanded="true" />
-            <element signature="e#337#338#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="75" column="54" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
+        <state relative-caret-position="860">
+          <caret line="64" column="67" selection-start-line="64" selection-start-column="67" selection-end-line="64" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1336,23 +1308,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyNumbers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
+        <state relative-caret-position="520">
+          <caret line="44" column="60" selection-start-line="44" selection-start-column="60" selection-end-line="44" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FriendlyNumbers#0;class#FriendlyNumbers#0" expanded="false" />
+            <element signature="method#friendly_numbers#0;class#FriendlyNumbers#0" expanded="false" />
             <element signature="method#gcdThing#0;class#FriendlyNumbers#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyData.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/KeyValue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        <state relative-caret-position="34">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/FriendlyDataMatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="74" column="35" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
           <folding>
-            <element signature="e#389#390#0" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
