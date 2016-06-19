@@ -18,7 +18,6 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
     private final int end;
     private final int MAX_TASKS = 256;
     private final double POW = 0.4;
-    private final int SEQ_THRESHOLD = 10_000;
     private int cores;
     private static DebugLogger log;
 
@@ -38,18 +37,34 @@ public class FriendlyNumbers extends RecursiveTask<FriendlyData> {
     @Override
     protected FriendlyData compute() {
 
-//        log.log(Level.INFO, String.format("start = %d end = %d", start, end));
-
-        if (end-start < SEQ_THRESHOLD)
+        if (cores == 1)
             return friendly_numbers(start, end);
-        else {
-            FriendlyNumbers left = new FriendlyNumbers(start, start +((int) ((end - start) / 2)) - 1, 1);
-            FriendlyNumbers right = new FriendlyNumbers(start + ((int) ((end - start) / 2)), end, 1);
-            right.fork();
-            FriendlyData leftRes = left.compute();
-            FriendlyData rightRes = right.join();
-            return FriendlyData.mergeData(leftRes, rightRes);
+
+        FriendlyData joinedRes = new FriendlyData(0);   //  the result
+        List<FriendlyNumbers> tasks = new ArrayList<>();    //  task pool
+        int tasksNo = cores + ((int) Math.pow(end - start, POW));   //  number of tasks
+        tasksNo = Math.min(tasksNo, MAX_TASKS); //  adjust the number of tasks
+        int chunkSize = (end-start) / tasksNo;  //  size of one task
+
+//        log.log(Level.INFO, String.format("Number of tasks: %d", tasksNo));
+        System.out.format("Number of tasks: %d", tasksNo);
+
+
+//  fork tasks
+        for (int i = start; i < end-start; i += chunkSize){
+            int newStart = i;
+            int newEnd = Math.min(i+chunkSize-1, end-start);
+            FriendlyNumbers task = new FriendlyNumbers(newStart, newEnd, 1);
+            task.fork();
+            tasks.add(task);
         }
+//  join tasks
+        for (FriendlyNumbers t :
+                tasks) {
+            joinedRes = FriendlyData.mergeData(joinedRes, t.join());
+        }
+
+        return  joinedRes;
     }
 
 
